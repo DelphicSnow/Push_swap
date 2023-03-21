@@ -6,7 +6,7 @@
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 16:35:20 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/17 19:48:18 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:20:34 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	find_min_value(t_stack *stack)
 	int		i;
 
 	i = 0;
-	min = __INT_MAX__;//vychytat min
+	min = __INT_MAX__;
 	current = stack->head;
 	if (stack->head == NULL)
 		return (0); // vychytat error

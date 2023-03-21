@@ -6,7 +6,7 @@
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:21:03 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/17 19:48:13 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:20:31 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ void	push(t_stack *stack_src, t_stack *stack_dst)
 	stack_dst->size += 1;
 }
 
-void	operation_pa (t_stack *stack_a, t_stack *stack_b)
-{
-	push(stack_a, stack_b);
-	write (1, "pa\n", 3);
-}
-
 void	operation_pb (t_stack *stack_a, t_stack *stack_b)
 {
-	push(stack_b, stack_a);
+	push(stack_a, stack_b);
 	write (1, "pb\n", 3);
+}
+
+void	operation_pa (t_stack *stack_a, t_stack *stack_b)
+{
+	push(stack_b, stack_a);
+	write (1, "pa\n", 3);
 }
 
 t_node	* get_tail (t_stack	*stack)
@@ -106,8 +106,7 @@ void	rotate(t_stack *stack)
 	stack->head = stack->head->next;
 	tail = get_tail(stack);
 	tail->next = tmp;
-	tmp ->next = NULL; 
-	//tmp ->rotate_cost = head->size - 1;
+	tmp ->next = NULL;
 }
 
 void	operation_ra (t_stack *stack_a)

@@ -1,16 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   operation_with_numbers.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:32:43 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/21 16:20:38 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:49:53 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	assign_index(t_stack *stack_a)
+{
+	int		tmp_value;
+	int		size;
+	t_node	*highest;
+	t_node	*current;
+	
+	size = stack_a->size;
+	tmp_value = INT_MIN;
+	current = stack_a->head;
+	highest = NULL;
+	while (size)
+	{
+		tmp_value = INT_MIN;
+		current = stack_a->head;
+		while (current)
+		{
+			if (current->value == INT_MIN && current->index == 0)
+				current->index = 1;
+			if (current->value > tmp_value && current->index == 0)
+			{
+				tmp_value = current->value;
+				highest = current;
+				current = current->next;
+			}
+			else
+				current = current->next;
+		}
+		highest->index = size--;
+	}
+}
 
 long long int	ft_atoi(const char *nptr)
 {
@@ -34,38 +66,6 @@ long long int	ft_atoi(const char *nptr)
 	if (*nptr != '\0' && !(*nptr >= '0' && *nptr <= '9'))
 		return (0);
 	return (result * minus_sign);
-}
-
-static void	free_nodes(t_node *head)
-{
-    t_node *current;
-    t_node *next;
-
-	current = head;
-    while (current != NULL)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
-}
-
-void	free_stack(t_stack *stack)
-{
-	if (stack != NULL)
-	{
-		if (stack->head != NULL)
-			free_nodes(stack->head);
-		free(stack);
-	}
-}
-
-void	ft_error(t_stack *stack_a, t_stack *stack_b)
-{
-	free_stack(stack_a);
-	free_stack(stack_b);
-	write(2, "Error\n", 6);
-	exit (1);
 }
 
 static int	is_arg_nmbr(char *argv)
@@ -110,7 +110,6 @@ static int	is_duplicate(char **argv, int argc)
 int	check_input(char **argv, int argc)
 {
 	int	i;
-	char	c;
 
 	i = 1;
 	while (i < argc)

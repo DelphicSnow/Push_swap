@@ -4,4 +4,6 @@ a.out
 *.o
 sort_zaloha
 checker_linux
-push_swap.out
+push_swap
+sort_2_never_used.c
+radix.c

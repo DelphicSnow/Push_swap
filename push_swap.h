@@ -6,7 +6,7 @@
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:31:45 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/21 16:20:36 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:29:51 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_node
 {
 	int				value;
-	//int				rotate_cost;
+	int				index;
 	struct s_node	*next;
 }	t_node;
 
@@ -30,6 +30,12 @@ typedef struct s_stack
 	int		size;
 	t_node	*head;
 }	t_stack;
+
+typedef struct s_data
+{
+    int max_bits;
+    int head_number;
+}   t_radix_data;
 
 t_stack *parse_arguments_for_stack_a(int argc, char **argv);
 t_node *create_node(t_stack *stack, int value);
@@ -51,13 +57,13 @@ void	reverse_rotate(t_stack *stack);
 void	operation_rra(t_stack *stack_a);
 void	operation_rrb(t_stack *stack_b);
 void	operation_rrr(t_stack *stack_a, t_stack *stack_b);
-//void	sort_stack (t_stack *stack_a, t_stack *stack_b);
-void	sort_stack2 (t_stack *stack_a, t_stack *stack_b);
+void    sort_stack (t_stack *stack_a, t_stack *stack_b, int argc);
+void	selection_sort(t_stack *stack_a, t_stack *stack_b);
+void    sort_3(t_stack *stack, int size);
+void    radix_sort(t_stack *stack_a, t_stack *stack_b);
 t_stack *initialize_stack(void);
-int	get_cost_of_rotation(t_stack *stack, int wanted_value);
-int	find_min_value(t_stack *stack);
 void	free_stack(t_stack *stack);
 void	ft_error(t_stack *stack_a, t_stack *stack_b);
 int	check_input(char **argv, int argc);
-
+void	assign_index(t_stack *stack_a);
 #endif

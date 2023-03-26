@@ -6,7 +6,7 @@
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:21:03 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/21 16:20:31 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/03/22 21:04:53 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	swap(t_stack *stack)
 	tmp = stack->head->value;
 	stack->head->value = stack->head->next->value;
 	stack->head->next->value = tmp;
+	tmp = stack->head->index;
+	stack->head->index = stack->head->next->index;
+	stack->head->next->index = tmp;
 }
 
 void	operation_sa (t_stack *stack_a)

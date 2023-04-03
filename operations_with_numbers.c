@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation_with_numbers.c                           :+:      :+:    :+:   */
+/*   operations_with_numbers.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:32:43 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/26 19:49:53 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:48:08 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ void	assign_index(t_stack *stack_a)
 	int		size;
 	t_node	*highest;
 	t_node	*current;
-	
+
 	size = stack_a->size;
-	tmp_value = INT_MIN;
 	current = stack_a->head;
-	highest = NULL;
 	while (size)
 	{
 		tmp_value = INT_MIN;
@@ -35,23 +33,20 @@ void	assign_index(t_stack *stack_a)
 			{
 				tmp_value = current->value;
 				highest = current;
-				current = current->next;
 			}
-			else
-				current = current->next;
+			current = current->next;
 		}
 		highest->index = size--;
 	}
 }
 
-long long int	ft_atoi(const char *nptr)
+long long	ft_atoi(const char *nptr)
 {
-	int		minus_sign;
-	long long int	result;
+	int			minus_sign;
+	long long	result;
 
 	result = 0;
 	minus_sign = 1;
-	
 	if (*nptr == '+' || *nptr == '-')
 	{
 		if (*nptr == '-')
@@ -87,7 +82,7 @@ static int	is_duplicate(char **argv, int argc)
 {
 	int	value;
 	int	i;
-	int j;
+	int	j;
 
 	value = 0;
 	i = 1;

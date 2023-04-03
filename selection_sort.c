@@ -6,7 +6,7 @@
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 20:06:22 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/26 20:32:20 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:28:37 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static int	get_cost_of_rotation(t_stack *stack, int wanted_value)
 		i++;
 		current = current->next;
 	}
-	return(0);
+	return (0);
 }
 
 static int	find_min_value(t_stack *stack)
 {
-	int	min;
+	int		min;
 	t_node	*current;
 	int		i;
 
@@ -41,7 +41,7 @@ static int	find_min_value(t_stack *stack)
 	min = __INT_MAX__;
 	current = stack->head;
 	if (stack->head == NULL)
-		return (0); // vychytat error
+		return (0);
 	while (i < stack->size)
 	{
 		if (current->value < min)
@@ -52,16 +52,17 @@ static int	find_min_value(t_stack *stack)
 	return (min);
 }
 
-static void    do_selection_sort(t_stack *stack_a, t_stack *stack_b,int min_value,int cost_to_rotate)
+static void	do_selection_sort(t_stack *stack_a, t_stack *stack_b, int min_value,
+int cost_to_rotate)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (stack_a->size > 3)
+	i = 0;
+	while (stack_a->size > 3)
 	{
 		min_value = find_min_value(stack_a);
 		cost_to_rotate = get_cost_of_rotation(stack_a, min_value);
-		if(cost_to_rotate == 1)
+		if (cost_to_rotate == 1)
 			operation_sa(stack_a);
 		else if (cost_to_rotate > 1)
 		{
@@ -88,10 +89,10 @@ void	selection_sort(t_stack *stack_a, t_stack *stack_b)
 	int	size_before_sort;
 
 	size_before_sort = stack_a->size;
-    min_value = 0;
-    cost_to_rotate = 0;
-    do_selection_sort(stack_a, stack_b, min_value, cost_to_rotate);
-    sort_3(stack_a, size_before_sort);
+	min_value = 0;
+	cost_to_rotate = 0;
+	do_selection_sort(stack_a, stack_b, min_value, cost_to_rotate);
+	sort_3(stack_a, size_before_sort);
 	while (stack_b->size > 0)
 		operation_pa(stack_a, stack_b);
 }

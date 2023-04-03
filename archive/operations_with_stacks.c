@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_with_stacks.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkajanek <tkajanek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 19:21:03 by tkajanek          #+#    #+#             */
-/*   Updated: 2023/03/22 21:04:53 by tkajanek         ###   ########.fr       */
+/*   Updated: 2023/04/01 17:19:36 by tkajanek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@ void	swap(t_stack *stack)
 	stack->head->next->index = tmp;
 }
 
-void	operation_sa (t_stack *stack_a)
+void	operation_sa(t_stack *stack_a)
 {
 	swap(stack_a);
 	write (1, "sa\n", 3);
 }
 
-void	operation_sb (t_stack *stack_b)
+void	operation_sb(t_stack *stack_b)
 {
 	swap(stack_b);
 	write (1, "sb\n", 3);
 }
 
-void	operation_ss (t_stack *stack_a, t_stack *stack_b)
+void	operation_ss(t_stack *stack_a, t_stack *stack_b)
 
 {
 	swap(stack_a);
@@ -58,19 +58,19 @@ void	push(t_stack *stack_src, t_stack *stack_dst)
 	stack_dst->size += 1;
 }
 
-void	operation_pb (t_stack *stack_a, t_stack *stack_b)
+void	operation_pb(t_stack *stack_a, t_stack *stack_b)
 {
 	push(stack_a, stack_b);
 	write (1, "pb\n", 3);
 }
 
-void	operation_pa (t_stack *stack_a, t_stack *stack_b)
+void	operation_pa(t_stack *stack_a, t_stack *stack_b)
 {
 	push(stack_b, stack_a);
 	write (1, "pa\n", 3);
 }
 
-t_node	* get_tail (t_stack	*stack)
+t_node	* get_tail(t_stack	*stack)
 {
 	t_node	*current;
 
@@ -84,7 +84,7 @@ t_node	* get_tail (t_stack	*stack)
 	return (current);
 }
 
-t_node	* get_before_tail (t_stack	*stack)
+t_node	* get_before_tail(t_stack	*stack)
 {
 	t_node	*current;
 
@@ -112,19 +112,19 @@ void	rotate(t_stack *stack)
 	tmp ->next = NULL;
 }
 
-void	operation_ra (t_stack *stack_a)
+void	operation_ra(t_stack *stack_a)
 {
 	rotate(stack_a);
 	write (1, "ra\n", 3);
 }
 
-void	operation_rb (t_stack *stack_b)
+void	operation_rb(t_stack *stack_b)
 {
 	rotate(stack_b);
 	write (1, "rb\n", 3);
 }
 
-void	operation_rr (t_stack *stack_a, t_stack *stack_b)
+void	operation_rr(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
